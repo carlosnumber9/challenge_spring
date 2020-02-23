@@ -3,12 +3,12 @@ package com.novaquality.challenge.persistence.repository.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import com.novaquality.challenge.persistence.model.Category;
+import com.novaquality.challenge.persistence.model.Rareness;
 
 import com.novaquality.challenge.persistence.model.Card;
 import com.novaquality.challenge.persistence.repository.CardRepository;
 
-@Repository
 public class InMemoryCardRepository implements CardRepository {
 
 	private List<Card> cards;
@@ -39,5 +39,12 @@ public class InMemoryCardRepository implements CardRepository {
 		cards.add(new Card("Rencor", "Cada monstruo del enemigo sobre el tablero le causa 1 punto de daño.", Rareness.LIMITED_EDITION, Category.CURSE, 0, 0));
 	}
 
-	/* Se pueden añadir los métodos que se consideren oportunos. */
+	/**
+	 * Retrieves all cards from repository.
+	 * @return list of cards
+	 */
+	public List<Card> findAll() {
+		return this.cards;
+	}
+
 }

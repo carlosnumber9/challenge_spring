@@ -15,6 +15,9 @@ public class CardServiceImpl implements CardService {
      */
     public void setScoreForAllCards() {
         List<Card> allCards = cardRepository.findAll();
+        if (allCards.isEmpty()) {
+            throw new IllegalStateException("There are no cards in repository.");
+        }
         for(Card card : allCards) {
             card.setScore(calculateScore(card));
         }

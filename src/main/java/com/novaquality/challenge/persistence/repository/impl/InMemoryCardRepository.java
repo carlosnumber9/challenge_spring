@@ -1,7 +1,9 @@
 package com.novaquality.challenge.persistence.repository.impl;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.novaquality.challenge.persistence.model.Category;
 import com.novaquality.challenge.persistence.model.Rareness;
@@ -45,6 +47,19 @@ public class InMemoryCardRepository implements CardRepository {
 	 */
 	public List<Card> findAll() {
 		return this.cards;
+	}
+
+	/**
+	 * Retrieves the best scored cards limited by parameter
+	 * @param limit number of cards to retrieve
+	 * @return a list of limit cards with the best score
+	 */
+	public List<Card> findByBestScore(Integer limit) {
+		return this.cards.stream()
+				.filter(card -> card.getScore() >= limit)
+				.sorted(Comparator.comparing(Card::getScore))
+				.limit(5)
+				.collect(Collectors.toList());
 	}
 
 }

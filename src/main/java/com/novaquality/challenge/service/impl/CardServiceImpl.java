@@ -35,4 +35,13 @@ public class CardServiceImpl implements CardService {
                 card.getCost() +
                 card.getPower();
     }
+
+    @Override
+    public List<Card> getBestCards(Integer limit) {
+        List<Card> bestCards = cardRepository.findByBestScore(limit);
+        if(bestCards.isEmpty()) {
+            throw new IllegalStateException("No cards found in repository.");
+        }
+        return bestCards;
+    }
 }

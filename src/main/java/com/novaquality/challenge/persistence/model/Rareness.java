@@ -2,19 +2,13 @@ package com.novaquality.challenge.persistence.model;
 
 public class Rareness {
 
-//    public static final Integer COMMON = 2;
-//    public static final Integer RARE = 4;
-//    public static final Integer VERY_RARE = 6;
-//    public static final Integer LIMITED_EDITION = 9;
+    private static final Integer COMMON_RARENESS = 2;
+    private static final Integer RARE_RARENESS = 4;
+    private static final Integer VERY_RARE_RARENESS = 6;
+    private static final Integer LIMITED_EDITION_RARENESS = 9;
 
-
-    public static final Rareness COMMON = new Rareness();
-    public static final Rareness RARE = new Rareness();
-    public static final Rareness VERY_RARE = new Rareness();
-    public static final Rareness LIMITED_EDITION = new Rareness();
-
-    public Rareness() {
-
+    public Rareness(Integer value) {
+        this.value = value;
     }
 
     private Integer value;
@@ -27,4 +21,9 @@ public class Rareness {
         this.value = value;
     }
 
+
+    public static final Rareness COMMON = new Rareness(COMMON_RARENESS);
+    public static final Rareness RARE = new Rareness(RARE_RARENESS);
+    public static final Rareness VERY_RARE = new Rareness(VERY_RARE_RARENESS);
+    public static final Rareness LIMITED_EDITION = new Rareness(LIMITED_EDITION_RARENESS);
 }

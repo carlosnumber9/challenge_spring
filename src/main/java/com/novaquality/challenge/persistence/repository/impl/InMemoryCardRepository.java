@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.novaquality.challenge.persistence.model.Card;
-import com.novaquality.challenge.persistence.model.aux.Category;
-import com.novaquality.challenge.persistence.model.aux.Rareness;
 import com.novaquality.challenge.persistence.repository.CardRepository;
 
 @Repository

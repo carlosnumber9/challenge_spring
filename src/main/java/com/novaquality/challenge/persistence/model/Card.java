@@ -1,7 +1,5 @@
 package com.novaquality.challenge.persistence.model;
 
-import com.novaquality.challenge.persistence.model.aux.Category;
-import com.novaquality.challenge.persistence.model.aux.Rareness;
 
 
 public class Card {

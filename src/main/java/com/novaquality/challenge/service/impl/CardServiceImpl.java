@@ -1,14 +1,16 @@
 package com.novaquality.challenge.service.impl;
 
 import com.novaquality.challenge.persistence.model.Card;
-import com.novaquality.challenge.persistence.repository.impl.InMemoryCardRepository;
+import com.novaquality.challenge.persistence.repository.CardRepository;
 import com.novaquality.challenge.service.CardService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class CardServiceImpl implements CardService {
 
-    private InMemoryCardRepository cardRepository;
+    @Autowired
+    private CardRepository cardRepository;
 
     /**
      * Calculates score and sets it to all cards in repository

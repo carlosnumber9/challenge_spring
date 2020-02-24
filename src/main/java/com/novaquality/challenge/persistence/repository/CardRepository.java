@@ -11,4 +11,6 @@ public interface CardRepository {
 
     public List<Card> findByBestScore(Integer limit);
 
+    public List<Card> findByScoreRange(Integer min, Integer max);
+
 }

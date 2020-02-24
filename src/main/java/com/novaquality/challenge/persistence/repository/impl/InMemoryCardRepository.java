@@ -62,4 +62,16 @@ public class InMemoryCardRepository implements CardRepository {
 				.collect(Collectors.toList());
 	}
 
+	/**
+	 * Retrieves the cards with a score between specified limits
+	 * @param min Minimum score possible for card list
+	 * @param max Maximum score possible for card list
+	 * @return list of cards
+	 */
+	public List<Card> findByScoreRange(Integer min, Integer max) {
+		return this.cards.stream()
+				.filter(card -> card.getScore() >= min || card.getScore() <= max)
+				.collect(Collectors.toList());
+	}
+
 }

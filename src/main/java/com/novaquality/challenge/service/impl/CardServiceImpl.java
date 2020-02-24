@@ -38,6 +38,11 @@ public class CardServiceImpl implements CardService {
                 card.getPower();
     }
 
+    /**
+     * Gets best cards
+     * @param limit Length for card list
+     * @return list of best limit cards
+     */
     @Override
     public List<Card> getBestCards(Integer limit) {
         List<Card> bestCards = cardRepository.findByBestScore(limit);
@@ -45,5 +50,20 @@ public class CardServiceImpl implements CardService {
             throw new IllegalStateException("No cards found in repository.");
         }
         return bestCards;
+    }
+
+    /**
+     * Gets cards in score interval
+     * @param minScore Minimum score for interval
+     * @param maxScore Maximum score for interval
+     * @return list of cards with score between specified range
+     */
+    @Override
+    public List<Card> getCardsByScoreRange(Integer minScore, Integer maxScore) {
+        List<Card> cards = cardRepository.findByScoreRange(minScore, maxScore);
+        if(cards.isEmpty()) {
+            throw new IllegalStateException("No cards found in repository.");
+        }
+        return cards;
     }
 }

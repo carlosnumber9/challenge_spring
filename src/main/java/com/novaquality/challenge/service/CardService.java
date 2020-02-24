@@ -11,4 +11,6 @@ public interface CardService {
     public Integer calculateScore(Card card);
 
     public List<Card> getBestCards(Integer limit);
+
+    public List<Card> getCardsByScoreRange(Integer minScore, Integer maxScore);
 }

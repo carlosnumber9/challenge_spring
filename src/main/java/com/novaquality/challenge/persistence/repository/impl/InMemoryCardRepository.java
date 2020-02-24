@@ -1,16 +1,16 @@
 package com.novaquality.challenge.persistence.repository.impl;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Repository;
+import com.novaquality.challenge.persistence.model.Category;
+import com.novaquality.challenge.persistence.model.Rareness;
 
 import com.novaquality.challenge.persistence.model.Card;
-import com.novaquality.challenge.persistence.model.aux.Category;
-import com.novaquality.challenge.persistence.model.aux.Rareness;
 import com.novaquality.challenge.persistence.repository.CardRepository;
 
-@Repository
 public class InMemoryCardRepository implements CardRepository {
 
 	private List<Card> cards;
@@ -41,5 +41,37 @@ public class InMemoryCardRepository implements CardRepository {
 		cards.add(new Card("Rencor", "Cada monstruo del enemigo sobre el tablero le causa 1 punto de daño.", Rareness.LIMITED_EDITION, Category.CURSE, 0, 0));
 	}
 
-	/* Se pueden añadir los métodos que se consideren oportunos. */
+	/**
+	 * Retrieves all cards from repository.
+	 * @return list of cards
+	 */
+	public List<Card> findAll() {
+		return this.cards;
+	}
+
+	/**
+	 * Retrieves the best scored cards limited by parameter
+	 * @param limit number of cards to retrieve
+	 * @return a list of limit cards with the best score
+	 */
+	public List<Card> findByBestScore(Integer limit) {
+		return this.cards.stream()
+				.filter(card -> card.getScore() >= limit)
+				.sorted(Comparator.comparing(Card::getScore))
+				.limit(5)
+				.collect(Collectors.toList());
+	}
+
+	/**
+	 * Retrieves the cards with a score between specified limits
+	 * @param min Minimum score possible for card list
+	 * @param max Maximum score possible for card list
+	 * @return list of cards
+	 */
+	public List<Card> findByScoreRange(Integer min, Integer max) {
+		return this.cards.stream()
+				.filter(card -> card.getScore() >= min || card.getScore() <= max)
+				.collect(Collectors.toList());
+	}
+
 }
